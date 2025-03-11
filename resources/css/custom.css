@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@400;600;700&family=Noto+Sans&family=Outfit&family=Rubik&family=Rubik+Mono+One&family=Secular+One&family=Work+Sans:wght@400;500;600&display=swap');
+/*
+! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+.font-noto-sans {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.font-work-sans {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.font-rubik {
+  font-family: 'Rubik', sans-serif;
+}
+
+.font-rubik-mono-one {
+  font-family: 'Rubik Mono One', monospace;
+}
+
+.font-secular-one {
+  font-family: 'Secular One', sans-serif;
+}
+
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+
+.bg-gradient-blue {
+  background:linear-gradient(to right,rgba(15,78,163,1) 0%, rgba(15,78,163,1) 100%);
+}
+
+.border-lightBlue-700 {
+  --tw-border-opacity: 1;
+  border-color: rgba(3, 105, 161, var(--tw-border-opacity));
+}
+
+.mask-blur {
+  -webkit-mask : linear-gradient(90deg, transparent , white 5%, white 95%, transparent);
+  mask: linear-gradient(90deg, transparent,white 20%, white 80%, transparent);
+}
+
+.animate-infinite-scroll {
+  animation: scroll 100s linear infinite;
+  transform:translateX(1%);
+}
+
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  /*0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-100%);
+    }*/
+
+  100% {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
