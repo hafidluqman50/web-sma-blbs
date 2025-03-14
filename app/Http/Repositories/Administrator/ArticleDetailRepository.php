@@ -10,4 +10,9 @@ class ArticleDetailRepository
     {
         return ArticleDetail::create($data);
     }
+
+    public function deleteByArticleId(int $articleId): bool
+    {
+        return ArticleDetail::where('article_id', $articleId)->delete();
+    }
 }

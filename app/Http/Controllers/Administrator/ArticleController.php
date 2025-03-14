@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administrator\Article\StoreRequest;
+use App\Http\Requests\Administrator\Article\UpdateRequest;
 use App\Http\Services\Administrator\ArticleService;
 use App\Http\Services\Administrator\CategoryArticleService;
 use App\Http\Transformers\CategoryArticleSelectTransformer;
@@ -54,7 +55,18 @@ class ArticleController extends Controller
             return App::make(CategoryArticleSelectTransformer::class)->transform($map);
         });
 
-        return Inertia::render('Administrator/Article/Edit', compact('article', 'category_articles'));
+        $selected_categories = $article->articleDetails->map(function(CategoryArticle $map) {
+           return $map->id;
+        });
+
+        return Inertia::render('Administrator/Article/Edit', compact('article', 'category_articles', 'selected_categories'));
+    }
+
+    public function update(Article $article, UpdateRequest $request): RedirectResponse
+    {
+        $this->articleService->update($article, $request);
+
+        return redirect('administrator/articles')->with('success', 'Berhasil Update Artikel');
     }
 
     public function delete(Article $article): RedirectResponse

@@ -58,13 +58,12 @@ export default function Page({ article, articles }: PageProps<ArticleDetailProps
                             Lainnya
                         </h4>
                         {
-                            articles.map((article, key) =>
-                                key >= 4 && key < 8 ? (
+                            articles.map((article, key) =>(
                                     <SuggestionsArticle key={key}
                                         title={ article.title }
                                         toLink={`/news/${article.slug}`}
                                     />
-                                ) : <></>
+                                )
                             )
                         }
                     </div>

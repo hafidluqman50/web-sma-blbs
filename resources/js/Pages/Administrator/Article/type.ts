@@ -4,6 +4,7 @@ export interface Article {
     date: string
     title: string
     content: string
+    image: string
     user: {
         name: string
     }

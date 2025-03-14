@@ -27,4 +27,9 @@ class ArticleRepository
     {
         return Article::create($data);
     }
+
+    public function update(Article $article, array $data): bool
+    {
+        return $article->update($data);
+    }
 }
