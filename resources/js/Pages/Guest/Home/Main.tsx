@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/card"
 
 import {
-  CodeBracketIcon,
-  CpuChipIcon,
-  PaintBrushIcon
+  AcademicCapIcon,
+  SparklesIcon,
+  ComputerDesktopIcon
 } from '@heroicons/react/24/outline'
 
 // import ttdKepsek from '~/assets/ttd_kepsek.png'
@@ -284,32 +284,32 @@ export default function Page({ articles }: PageProps<ArticleProps>) {
         container lg:py-24 md:py-24 lg:px-20 md:px-32 mx-auto font-work-sans">
         <Card>
           <CardHeader className="bg-sky-400 h-48 rounded-t-lg">
-            <CpuChipIcon className="text-white text-center"/>
+            <AcademicCapIcon className="text-white text-center"/>
           </CardHeader>
           <CardContent>
-            <p className="text-center font-semibold text-lg mb-4 mt-4 text-sky-400">TJKT</p>
+            <p className="text-center font-semibold text-lg mb-4 mt-4 text-sky-400">REGULER/UMUM</p>
             <p className="text-center text-md">
-            Di jurusan ini kamu akan mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika.
+            Peserta didik mengikuti Pembelajaran intensif di kelas menggunakan kurikulum merdeka, dan peserta didik dapat mempunyai keahlian tambahan dengan mengikuti kegiatan ekstrakurikuler yang ada antara lain : Ekskul Astronomi, Biologi, English Fun, Fisika, Kimia, Matematika, Jurnalistik, PIK - R, PMR, Tata Boga dan Tahfidz Qur'an.
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="bg-orange-400 h-48 rounded-t-lg">
-            <CodeBracketIcon className="text-white text-center"/>
+            <SparklesIcon className="text-white text-center"/>
           </CardHeader>
           <CardContent>
-            <p className="text-center font-semibold text-lg mb-4 mt-4 text-orange-400">PPLG</p>
+            <p className="text-center font-semibold text-lg mb-4 mt-4 text-orange-400">ATLET</p>
             <p className="text-center text-md">
-            Di jurusan ini kamu akan mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika.
+            Peserta didik mengikuti pembelajaran secara intensif menggunakan kurikulum merdeka dan peserta didik mendapatkan pembinaan khusus sesuai dengan kelas yang telah dipilih (Forsgi Atau Persinas) dan dipersilahkan mengikuti ekskul yang telah disediakan.
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="bg-green-400 h-48 rounded-t-lg">
-            <PaintBrushIcon className="text-white text-center"/>
+            <ComputerDesktopIcon className="text-white text-center"/>
           </CardHeader>
           <CardContent>
-            <p className="text-center font-semibold text-lg mb-4 mt-4 text-green-400">DKV</p>
+            <p className="text-center font-semibold text-lg mb-4 mt-4 text-green-400">IT</p>
             <p className="text-center text-md">
             Di jurusan ini kamu akan mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika.
             </p>

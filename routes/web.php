@@ -21,8 +21,8 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::group(['prefix' => 'news'], function() {
-    Route::get('/', [ArticleController::class, 'index']);
-    Route::get('/{slug}', [ArticleController::class, 'show']);
+    Route::get('/', [ArticleController::class, 'index'])->name('guest.articles');
+    Route::get('/{slug}', [ArticleController::class, 'show'])->name('guest.articles.show');
 });
 
 require __DIR__.'/auth.php';

@@ -1,5 +1,5 @@
 import AdministratorLayout from "@/Layouts/Administrator/Layout";
-import { FormEventHandler, ReactNode, useRef } from "react";
+import { FormEventHandler, ReactNode, useRef, useState } from "react";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { menus } from "../sidebar";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,9 @@ type SelectProps = {
 }
 
 export default function Page({ category_articles }: PageProps<SelectProps>): ReactNode {
+
+    const [preview, setPreview] = useState<string|undefined>(undefined)
+
     const { data, setData, post, processing, errors, reset } = useForm<ArticleForm>({
         date: dayjs().format('YYYY-MM-DD'),
         title: '',
@@ -91,7 +94,11 @@ export default function Page({ category_articles }: PageProps<SelectProps>): Rea
                                         'bold italic forecolor | alignleft aligncenter ' +
                                         'alignright alignjustify | bullist numlist outdent indent | ' +
                                         'removeformat | help',
-                                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+                                        extended_valid_elements: 'ol[class=list-decimal]' +
+                                        ',ul[class=list-disc],h1[class=text-2xl text-bold]' +
+                                        ',h2[class=text-xl text-bold],h3[class=text-lg text-bold]' +
+                                        ',h4[class=text-md text-bold],h5[class=text-sm text-bold],h6[class=text-xs text-bold]'
                                     }}
                                     />
                                 <InputError message={ errors.content} className="mt-2" />
@@ -116,8 +123,16 @@ export default function Page({ category_articles }: PageProps<SelectProps>): Rea
                                 <Label htmlFor="image"> Gambar </Label>
                                 <Input
                                     type="file"
-                                    onChange={(event) => setData('image', event.target.files ? event.target.files[0] : null)}
+                                        onChange={(event) => {
+                                            if(event.target.files) {
+                                                setPreview(URL.createObjectURL(event.target.files[0]))
+                                            } else {
+                                                setPreview(undefined)
+                                            }
+                                            setData('image', event.target.files ? event.target.files[0] : null)
+                                        }}
                                 />
+                                <img className="mt-3 w-2/6" src={preview} />
                                 <InputError message={ errors.image} className="mt-2" />
                             </div>
                             <div className="mt-4 w-full border-t-2 border-slate-200 pt-4">
