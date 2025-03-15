@@ -116,84 +116,20 @@ export default function Page({ articles }: PageProps<ArticleProps>) {
         </p>
         <div className="w-screen h-36 bg-white container mx-auto shadow-lg rounded-lg overflow-hidden flex flex-nowrap mask-blur px-32 font-outfit mb-3">
             <div className="flex animate-infinite-scroll py-2">
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="2 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="3 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="4 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="5 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="6 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="7 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="8 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="9 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="10 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="11 Months Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="1 Year Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="2 Years Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
-                <InfoArticle
-                    title="Pengumuman Juara LKS"
-                    dateArticle="3 Years Ago"
-                    toLink="/info/pengumuman-juara-lks/"
-                    imgSrc="https://smkn7-smr.sch.id/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-24-at-14.49.27_cd70688c-750x405.jpg"
-                />
+                {
+                    articles.map((article) => {
+                        return article.article_details.map((article_detail) =>
+                            article_detail.slug_name == 'pengumuman' ? (
+                                <InfoArticle
+                                    title={article.title}
+                                    dateArticle="2 Months Ago"
+                                    toLink={`/news/${article.slug}`}
+                                    imgSrc={article.image}
+                                />
+                            ) : <></>
+                        )
+                    })
+                }
 
             </div>
         </div>
@@ -201,7 +137,7 @@ export default function Page({ articles }: PageProps<ArticleProps>) {
             {/*
             // @ts-ignore */}
             <Button className="bg-gradient-blue" variant="gradient" size="md">
-                <Link href="/info-news">Read More</Link>
+                <Link href="/news">Read More</Link>
             </Button>
         </div>
     </section>
@@ -320,7 +256,7 @@ export default function Page({ articles }: PageProps<ArticleProps>) {
           <CardContent>
             <p className="text-center font-semibold text-lg mb-4 mt-4 text-green-400">IT</p>
             <p className="text-center text-md">
-            Di jurusan ini kamu akan mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika.
+            Peserta didik akan mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika.
             </p>
           </CardContent>
         </Card>

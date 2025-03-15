@@ -8,19 +8,11 @@ export interface Article {
     user: {
         name: string
     }
-    article_details: Array<{
-        name: string
-    }>
+    article_details: ArticleDetail[]
 }
 
-export interface InfoArticle {
+export interface ArticleDetail {
     id: number
-    date: string
-    title: string
-    slug: string
-    content: string
-    image: string
-    user: {
-        name: string
-    }
+    name: string
+    slug_name: string
 }
