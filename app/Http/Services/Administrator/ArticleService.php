@@ -4,6 +4,7 @@ namespace App\Http\Services\Administrator;
 
 use App\Http\Repositories\Administrator\ArticleDetailRepository;
 use App\Http\Repositories\Administrator\ArticleRepository;
+use App\Http\Requests\Administrator\Article\IndexRequest;
 use App\Http\Requests\Administrator\Article\StoreRequest;
 use App\Http\Requests\Administrator\Article\UpdateRequest;
 use App\Models\Article;
@@ -25,9 +26,9 @@ class ArticleService
         return $this->articleRepository->getAll();
     }
 
-    public function getWithPagination(): array
+    public function getWithPagination(IndexRequest $request): array
     {
-        $articles = $this->articleRepository->getWithPagination();
+        $articles = $this->articleRepository->getWithPagination($request);
         return [
             $articles,
             ($articles->currentPage() - 1) * $articles->perPage() + 1

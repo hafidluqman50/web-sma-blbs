@@ -29,7 +29,7 @@ export const menus = (value?: string): object => {
           },
           {
             title: "Kategori Berita",
-            url: '#',
+            url: route('administrator.category-articles'),
             isActive: value == 'category-articles'
           }
         ],

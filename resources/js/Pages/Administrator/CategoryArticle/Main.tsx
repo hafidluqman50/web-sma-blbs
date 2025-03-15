@@ -13,7 +13,7 @@ import { Head, Link, router, usePage } from "@inertiajs/react";
 import { menus } from "../sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Article } from "./type";
+import { CategoryArticle } from "./type";
 import { PageProps, PaginationData } from "@/types";
 import { Pencil, Trash2 } from "lucide-react";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -23,16 +23,18 @@ import { Badge } from "@/components/ui/badge";
 import dayjs from 'dayjs';
 import 'dayjs/locale/id'
 
-interface Articles {
-    data:Array<Article>;
+interface CategoryArticles {
+    data:Array<CategoryArticle>;
     links:Array<PaginationData>;
 }
 
-type ArticleProps = {
-    articles:Articles
+type CategoryArticleProps = {
+    category_articles:CategoryArticles
 }
 
-export default function Page({articles, page_num}: PageProps<ArticleProps>): ReactNode {
+export default function Page({category_articles, page_num}: PageProps<CategoryArticleProps>): ReactNode {
+
+    console.log(category_articles)
 
     dayjs.locale('id')
 
@@ -41,13 +43,13 @@ export default function Page({articles, page_num}: PageProps<ArticleProps>): Rea
 
     const deletePrompt = (id: number) => {
         Swal.fire({
-            title: "Yakin Hapus Berita?",
+            title: "Yakin Hapus Kategori Berita?",
             showDenyButton: true,
             confirmButtonText: "Hapus",
             denyButtonText: `Batal`
         }).then((result: SweetAlertResult) => {
             if(result.isConfirmed) {
-                router.delete(route('administrator.articles.delete', id))
+                router.delete(route('administrator.category-articles.delete', id))
             }
         })
     }
@@ -56,8 +58,8 @@ export default function Page({articles, page_num}: PageProps<ArticleProps>): Rea
 
   return(
     <>
-    <Head title="Data Berita" />
-    <AdministratorLayout data={menus('articles')}>
+    <Head title="Data Kategori Berita" />
+    <AdministratorLayout data={menus('category-articles')}>
         {
             session.success && (
             <Alert id="alert-success" className="mb-5 flex" variant="success">
@@ -77,7 +79,7 @@ export default function Page({articles, page_num}: PageProps<ArticleProps>): Rea
             </Alert>
         )}
       <div className="flex">
-            <Link href={route('administrator.articles.create')}>
+            <Link href={route('administrator.category-articles.create')}>
                 <Button className="bg-sky-600 hover:bg-sky-800 m-2">
                     Tambah Data
                 </Button>
@@ -85,12 +87,12 @@ export default function Page({articles, page_num}: PageProps<ArticleProps>): Rea
             <Input
                 type="search"
                 name="search"
-                placeholder="Cari Berita"
+                placeholder="Cari Kategori Berita"
                 className="w-1/2 mt-2"
                 onChange={(event) => setSearch(event.target.value)}
             />
             <Button className="m-2" onClick={() => {
-                router.get(route('administrator.articles', {
+                router.get(route('administrator.category-articles', {
                     search
                 }))
             }}>Cari</Button>
@@ -99,44 +101,30 @@ export default function Page({articles, page_num}: PageProps<ArticleProps>): Rea
         <TableHeader>
           <TableRow>
             <TableHead className="border border-slate-200">No.</TableHead>
-            <TableHead className="border border-slate-200">Tanggal</TableHead>
-            <TableHead className="border border-slate-200">Judul Berita</TableHead>
-            <TableHead className="border border-slate-200">Kategori</TableHead>
-            <TableHead className="border border-slate-200">Input By</TableHead>
+            <TableHead className="border border-slate-200">Nama Kategori</TableHead>
             <TableHead className="border border-slate-200">#</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
             {
-                articles.data.length == 0 ?
+                category_articles.data.length == 0 ?
                 <TableRow>
-                    <TableCell colSpan={6} align="center">
+                    <TableCell colSpan={3} align="center">
                         Empty Data!
                     </TableCell>
                 </TableRow> :
-                articles.data.map((row, key) => (
+                category_articles.data.map((row, key) => (
                     <TableRow key={key}>
                         <TableCell className="border border-slate-200">
                             {page_num+key}
                         </TableCell>
                         <TableCell className="border border-slate-200">
-                            {dayjs(row.date).locale('id').format('dddd, D MMMM YYYY')}
-                        </TableCell>
-                        <TableCell className="border border-slate-200">
-                            {row.title}
-                        </TableCell>
-                        <TableCell className="border border-slate-200">
-                            {row.article_details.map((map: any) => (
-                                <Badge className="mr-2 bg-green-600 hover:bg-green-700">{map.name}</Badge>
-                            ))}
-                        </TableCell>
-                        <TableCell className="border border-slate-200">
-                            {row.user.name}
+                            {row.name}
                         </TableCell>
                         <TableCell>
                             <div className="flex space-x-4">
                                 <Button className="bg-amber-500 text-white hover:bg-amber-500" asChild>
-                                    <Link href={route('administrator.articles.edit', row.id)}><Pencil /></Link>
+                                    <Link href={route('administrator.category-articles.edit', row.id)}><Pencil /></Link>
                                 </Button>
                                 <Button variant='destructive' onClick={() => deletePrompt(row.id)}>
                                     <Trash2 />
@@ -149,11 +137,11 @@ export default function Page({articles, page_num}: PageProps<ArticleProps>): Rea
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell className="border border-slate-200" colSpan={6}>
+            <TableCell className="border border-slate-200" colSpan={3}>
                 <Pagination>
                     <PaginationContent>
                     {
-                        articles.links.map((pagination, key) => (
+                        category_articles.links.map((pagination, key) => (
                             <div key={key}>
                             {
                                 pagination.label.includes('Previous') ?
