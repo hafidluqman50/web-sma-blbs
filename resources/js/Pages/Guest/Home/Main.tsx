@@ -33,6 +33,7 @@ import {
 } from '@/components/pages/article'
 import { Article as ArticleType } from '../type';
 import dayjs from 'dayjs'
+import calendar from 'dayjs/plugin/calendar'
 
 type ArticleProps = {
     articles:Array<ArticleType>
@@ -40,6 +41,8 @@ type ArticleProps = {
 
 export default function Page({ articles }: PageProps<ArticleProps>) {
     const {scrollYProgress} = useScroll()
+
+    dayjs.extend(calendar)
 
   return (
     <GuestLayout>
@@ -61,29 +64,28 @@ export default function Page({ articles }: PageProps<ArticleProps>) {
                   ))}
                 </div>
               )}>
-            <div className="relative h-full w-full">
-                <img
-                  src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-                  alt="image 3"
-                  className="h-full w-full object-cover"
-                />
-            </div>
-            <div className="relative h-full w-full">
-                <img
-                  src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-                  alt="image 1"
-                  className="h-full w-full object-cover"
-                />
-            </div>
-            <div className="relative h-full w-full">
-                <Link href='#'>
-                <img
-                  src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-                  alt="image 2"
-                  className="h-full w-full object-cover"
-                />
-                </Link>
-            </div>
+            {
+                articles.length == 0 ?
+                <div className="relative h-full w-full">
+                    <img
+                      src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
+                      alt="image dummy"
+                      className="h-full w-full object-cover"
+                    />
+                </div> : articles.map((article, index) =>
+                    index >= 0 && index < 3 ? (
+                        <div className="relative h-full w-full" key={index}>
+                            <Link href={`/news/${article.slug}`}>
+                                <img
+                                    src={article.image}
+                                    alt={article.title}
+                                    className="h-full w-full object-cover"
+                                />
+                            </Link>
+                        </div>
+                    ) : <></>
+                )
+            }
         </Carousel>
     </section>
     <section id="sambutan-kepala-sekolah" className="relative isolate bg-slate-50 px-10 py-20 lg:py-40 lg:px-32 md:px-28 min-h-screen sm:py-40 pb-0">
@@ -112,7 +114,7 @@ export default function Page({ articles }: PageProps<ArticleProps>) {
         <p className="text-center font-semibold text-xl font-noto-sans mb-10">
             INFO TERKINI
         </p>
-        <div className="w-screen h-36 bg-white container mx-auto shadow-lg rounded-lg overflow-hidden flex flex-nowrap mask-blur px-32 font-outfit">
+        <div className="w-screen h-36 bg-white container mx-auto shadow-lg rounded-lg overflow-hidden flex flex-nowrap mask-blur px-32 font-outfit mb-3">
             <div className="flex animate-infinite-scroll py-2">
                 <InfoArticle
                     title="Pengumuman Juara LKS"
@@ -194,6 +196,13 @@ export default function Page({ articles }: PageProps<ArticleProps>) {
                 />
 
             </div>
+        </div>
+        <div className="grid justify-items-center mt-3 lg:mt-0">
+            {/*
+            // @ts-ignore */}
+            <Button className="bg-gradient-blue" variant="gradient" size="md">
+                <Link href="/info-news">Read More</Link>
+            </Button>
         </div>
     </section>
     <section id="berita-terkini" className="relative isolate py-20 min-h-screen sm:py-20 pb-0">

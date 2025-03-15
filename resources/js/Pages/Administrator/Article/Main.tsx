@@ -21,6 +21,7 @@ import Swal, { SweetAlertResult } from 'sweetalert2'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import dayjs from 'dayjs';
+import 'dayjs/locale/id'
 
 interface Articles {
     data:Array<Article>;

@@ -55,7 +55,7 @@ type ArticleCategoryProps = {
 const ArticleCategory = React.forwardRef<HTMLDivElement, ArticleCategoryProps>(
     ({categoryName},ref) => {
         return(
-            <div className="w-full h-8 bg-sky-400 rounded-lg py-1">
+            <div className="w-full min-h-8 bg-sky-400 rounded-lg py-1">
                 <p className="text-white text-center text-sm font-outfit">{categoryName}</p>
             </div>
         )
