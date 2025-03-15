@@ -2,7 +2,9 @@
 
 namespace App\Http\Repositories\Administrator;
 
+use App\Http\Requests\Administrator\Article\IndexRequest;
 use App\Models\Article;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -13,9 +15,11 @@ class ArticleRepository
         return Article::with(['articleDetails', 'user'])->get();
     }
 
-    public function getWithPagination(): LengthAwarePaginator
+    public function getWithPagination(IndexRequest $request): LengthAwarePaginator
     {
-        return Article::with(['articleDetails', 'user'])->orderBy('created_at', 'DESC')->paginate(10)->onEachSide(1)->withQueryString();
+        return Article::with(['articleDetails', 'user'])->when($request->filled('search'), function(Builder $query) use ($request) {
+            return $query->where('title', 'like', '%'.$request->search.'%');
+        })->orderBy('created_at', 'DESC')->paginate(10)->onEachSide(1)->withQueryString();
     }
 
     public function getById(int $id): Article

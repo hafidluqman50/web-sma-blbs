@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administrator\Article\IndexRequest;
 use App\Http\Requests\Administrator\Article\StoreRequest;
 use App\Http\Requests\Administrator\Article\UpdateRequest;
 use App\Http\Services\Administrator\ArticleService;
@@ -24,9 +25,9 @@ class ArticleController extends Controller
         private CategoryArticleService $categoryArticleService
     ){}
 
-    public function index(): Response
+    public function index(IndexRequest $request): Response
     {
-        [$articles, $page_num] = $this->articleService->getWithPagination();
+        [$articles, $page_num] = $this->articleService->getWithPagination($request);
 
         return Inertia::render('Administrator/Article/Main', compact('articles', 'page_num'));
     }
