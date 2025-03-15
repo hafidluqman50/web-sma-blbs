@@ -11,6 +11,7 @@ import Select from 'react-select'
 import { PageProps } from "@/types";
 import { Editor } from '@tinymce/tinymce-react';
 import dayjs from "dayjs";
+import { LampIcon } from "lucide-react";
 
 type SelectProps = {
     category_articles: CategoryArticleSelect[]
@@ -62,6 +63,21 @@ export default function Page({ article, category_articles, selected_categories }
         <AdministratorLayout data={menus('articles')}>
             <div className="py-12">
                 <div className="mx-auto sm:px-6 lg:px-8">
+                    <div className="border-2 border-dotted border-amber-600 p-3 rounded-lg bg-zinc-50 mb-3">
+                        <div className="flex text-amber-600 gap-2">
+                            <div>
+                                <LampIcon/>
+                            </div>
+                            <div>
+                                <p><b>Tips Mengisi Data Berita!</b></p>
+                            </div>
+                        </div>
+                        <ul className="list-disc p-5">
+                            <li>Jika ingin menampilkan berita di section "INFO TERKINI" pastikan memilih kategori "Pengumuman"</li>
+                            <li>Kategori Berita dapat dipilih lebih dari 1</li>
+                            <li>Pastikan Kategori Berita sesuai dengan konteks berita!</li>
+                        </ul>
+                    </div>
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg py-8 px-8">
                         <div className="border-b-2 mb-4 py-4 border-slate-200">
                             <Button variant="secondary" asChild>

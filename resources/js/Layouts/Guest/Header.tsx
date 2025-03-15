@@ -40,6 +40,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import dayjs from 'dayjs'
+import 'dayjs/locale/id'
 
 const profile = [
   { name: 'SEJARAH SINGKAT', href: '/about-us/sejarah-singkat', child:[] },
@@ -105,6 +107,8 @@ export default function HeaderLayout() {
         setSubMenuOpen(false)
     }
   }
+
+  dayjs().locale('id').format()
 
   return (
     <header className="bg-sky-600 font-montserrat opacity-1 fixed top-0 z-10 w-full text-white">

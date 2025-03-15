@@ -25,4 +25,9 @@ Route::group(['prefix' => 'news'], function() {
     Route::get('/{slug}', [ArticleController::class, 'show'])->name('guest.articles.show');
 });
 
+Route::group(['prefix' => 'info-news'], function() {
+    Route::get('/', [InfoArticleController::class, 'index'])->name('guest.info-articles');
+    Route::get('/{slug}', [ArticleController::class, 'show'])->name('guest.info-articles.show');
+});
+
 require __DIR__.'/auth.php';

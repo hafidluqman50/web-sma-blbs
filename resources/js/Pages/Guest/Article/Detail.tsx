@@ -8,6 +8,7 @@ import { Head, Link } from "@inertiajs/react";
 import DOMPurify from 'dompurify';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Slash } from "lucide-react";
+import { ArticleCategory } from "@/components/pages/article";
 
 type ArticleDetailProps = {
     article: Article
@@ -49,6 +50,15 @@ export default function Page({ article, articles }: PageProps<ArticleDetailProps
                     <div className="w-full lg:w-2/3 mb-5 lg:mb-10 md:mb-10">
                         <h6 className="text-2xl font-semibold font-outfit mb-2">{article.title}</h6>
                         <p className="text-neutral-600 font-outfit text-lg">{article.user.name} - {dayjs(article.date).locale('id').format('D MMMM YYYY')}</p>
+                        <div className="grid grid-cols-3 gap-3 mt-3">
+                        {
+                            article.article_details.map((category_article, key) => (
+                                <ArticleCategory key={key}
+                                    categoryName={category_article.name}
+                                />
+                            ))
+                        }
+                        </div>
                         <img className="w-full h-4/4 mb-5 mt-5" src={article.image} alt={article.title} />
                         <hr className="py-2 border-1 border-sky-500 mb-5" />
                         <div className="font-work-sans leading-relaxed" dangerouslySetInnerHTML={{ __html: article.content }} />
