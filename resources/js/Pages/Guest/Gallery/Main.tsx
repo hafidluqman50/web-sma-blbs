@@ -1,10 +1,12 @@
 import GuestLayout from "@/Layouts/Guest/Layout"
 import { PageProps } from "@/types";
-import { Head } from "@inertiajs/react"
+import { Head, Link } from "@inertiajs/react"
 import { ReactNode, useState } from "react";
 import { Gallery } from "../type";
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button";
+import { Slash } from "lucide-react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 type GalleryProps = {
     galleries: Array<Gallery>
@@ -32,6 +34,23 @@ export default function Page({galleries}: PageProps<GalleryProps>): ReactNode {
             <Head title="Data Galeri" />
             <GuestLayout>
                 <section id="gallery" className="relative isolate py-40 px-5 lg:px-10 min-h-screen sm:py-40 font-outfit">
+                    <Breadcrumb>
+                      <BreadcrumbList>
+                        <BreadcrumbItem>
+                          <Link href="/">
+                              Beranda
+                          </Link>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator>
+                          <Slash />
+                        </BreadcrumbSeparator>
+                        <BreadcrumbItem>
+                            <Link href={route('guest.galleries')}>
+                                Galeri
+                            </Link>
+                        </BreadcrumbItem>
+                      </BreadcrumbList>
+                    </Breadcrumb>
                     <div className="flex flex-col justify-items-center items-center">
                         <div className="w-full mb-5">
                             <p className="text-3xl font-outfit text-center">

@@ -79,10 +79,10 @@ const schoolProgram = [
 
 const academic = [
     { name: 'BERITA', href: route('guest.articles') },
-    { name: 'KALENDER AKADEMIK', href: '/academic-calendar' },
+    { name: 'KALENDER AKADEMIK', href: route('guest.academic-calendars') },
     // { name: 'KEGIATAN', href: '/events' },
     // { name: 'JADWAL', href: '/schedule' },
-    { name: 'DATA GURU', href: '/teachers' },
+    { name: 'DATA GURU', href: route('guest.teachers') },
 ]
 
 import logoSmkN7Samarinda from '@/assets/sma.png'

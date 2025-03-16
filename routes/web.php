@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Guest\AcademicCalendarController;
 use App\Http\Controllers\Guest\ArticleController;
 use App\Http\Controllers\Guest\GalleryController;
 use App\Http\Controllers\Guest\HomeController;
@@ -38,6 +39,10 @@ Route::group(['prefix' => 'galleries'], function() {
 
 Route::group(['prefix' => 'teachers'], function() {
    Route::get('/', [TeacherController::class, 'index'])->name('guest.teachers');
+});
+
+Route::group(['prefix' => 'academic-calendars'], function() {
+   Route::get('/', [AcademicCalendarController::class, 'index'])->name('guest.academic-calendars');
 });
 
 require __DIR__.'/auth.php';
