@@ -3,6 +3,7 @@
 namespace App\Http\Services\Guest;
 
 use App\Http\Repositories\Guest\AcademicCalendarRepository;
+use App\Models\AcademicCalendar;
 use Illuminate\Database\Eloquent\Collection;
 
 class AcademicCalendarService
@@ -14,6 +15,11 @@ class AcademicCalendarService
     public function getAll(): Collection
     {
         return $this->academicCalendarRepository->getAll();
+    }
+
+    public function getFirst(): ?AcademicCalendar
+    {
+        return $this->academicCalendarRepository->getFirst();
     }
 
     public function getWithPagination(): array

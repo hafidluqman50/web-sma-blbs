@@ -13,6 +13,11 @@ class AcademicCalendarRepository
         return AcademicCalendar::all();
     }
 
+    public function getFirst(): ?AcademicCalendar
+    {
+        return AcademicCalendar::orderBy('created_at', 'DESC')->first();
+    }
+
     public function getWithPagination(): LengthAwarePaginator
     {
         return AcademicCalendar::orderBy('created_at', 'DESC')->paginate(10)->onEachSide(1)->withQueryString();
