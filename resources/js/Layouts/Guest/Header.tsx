@@ -80,8 +80,8 @@ const schoolProgram = [
 const academic = [
     { name: 'BERITA', href: route('guest.articles') },
     { name: 'KALENDER AKADEMIK', href: '/academic-calendar' },
-    { name: 'KEGIATAN', href: '/events' },
-    { name: 'JADWAL', href: '/schedule' },
+    // { name: 'KEGIATAN', href: '/events' },
+    // { name: 'JADWAL', href: '/schedule' },
     { name: 'DATA GURU', href: '/teachers' },
 ]
 

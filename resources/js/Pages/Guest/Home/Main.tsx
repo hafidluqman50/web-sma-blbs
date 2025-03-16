@@ -15,11 +15,12 @@ import {
   ComputerDesktopIcon
 } from '@heroicons/react/24/outline'
 
-// import ttdKepsek from '~/assets/ttd_kepsek.png'
 import imgKepsek from '@/assets/Kepsek_Edi_Purwanto.jpg'
 import imgKepsek2 from '@/assets/kepsek_2.jpg'
+import yppi_logo from '@/assets/yppi.png'
+import bsi_logo from '@/assets/Bank_Syariah_Indonesia.svg'
 
-import { Button,Carousel,Typography } from '@material-tailwind/react'
+import { Button,Carousel } from '@material-tailwind/react'
 
 import {InfoArticle} from '@/components/pages/info-article'
 import {SuggestionsArticle} from '@/components/pages/suggestions-article'
@@ -110,6 +111,9 @@ export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
         <p className="text-center font-semibold text-xl font-noto-sans mb-10">
             KALENDER AKADEMIK
         </p>
+        <div className='p-10 flex justify-center'>
+            <img className='w-full lg:w-2/4 md:w-2/4' src='https://smaplusbudiluhur.is3.cloudhost.id/articles/1741992843.jpg'/>
+        </div>
     </section>
     <section id="info-terkini" className="relative isolate bg-stone-50 py-20 min-h[10rem]">
         <p className="text-center font-semibold text-xl font-noto-sans mb-10">
@@ -147,7 +151,7 @@ export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
             BERITA TERKINI
         </p>
         <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-5 mt-24 container mx-auto font-outfit">
-            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 pb-10">
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 px-2 gap-5 pb-10">
                 {
                     articles.map((article, key) =>
                         key >= 0 && key < 4 ? (
@@ -230,7 +234,7 @@ export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
             JURUSAN
         </p>
         <div className="grid gap-5 lg:grid-cols-3 lg:gap-15 sm:grid-cols-1 sm:gap-10 lg:mt-22
-        container lg:py-24 md:py-24 lg:px-20 md:px-32 mx-auto font-work-sans">
+        container px-2 py-2 lg:py-24 md:py-24 lg:px-20 md:px-32 mx-auto font-work-sans">
         <Card>
           <CardHeader className="bg-sky-400 h-48 rounded-t-lg">
             <AcademicCapIcon className="text-white text-center"/>
@@ -267,19 +271,13 @@ export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
         </div>
     </section>
     <section id="brand" className="relative isolate h-1/3 pb-0">
-        <div className="grid grid-cols-1 gap-9 justify-items-center lg:grid-cols-4 lg:gap-10 sm:grid-cols-1 sm:gap-10 lg:mt-22
+        <div className="grid grid-cols-1 gap-9 justify-items-center lg:grid-cols-2 lg:gap-10 sm:grid-cols-1 sm:gap-10 lg:mt-22
         container py-24 lg:px-32 md:px-32 sm:px-32 mx-auto">
             <div>
-                <img className="w-4/4 h-20" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/google-sm.png"/>
+                <img className="w-4/4 h-32" src={yppi_logo}/>
             </div>
             <div>
-                <img className="w-4/4 h-20" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/bisaai-sm.png"/>
-            </div>
-            <div>
-                <img className="w-4/4 h-20" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/kedata.png"/>
-            </div>
-            <div>
-                <img className="w-4/4 h-20" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/Jupiter_IT_Solutions_Long.png"/>
+                <img className="w-2/4 sm:w-4/4 h-32" src={bsi_logo}/>
             </div>
         </div>
     </section>

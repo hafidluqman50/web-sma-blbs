@@ -1,4 +1,4 @@
-import { LayoutDashboard, Clipboard, Users, GalleryHorizontalEnd } from "lucide-react";
+import { LayoutDashboard, Clipboard, Users, GalleryHorizontalEnd, GraduationCap } from "lucide-react";
 
 const itemMenus: string[] = ['articles', 'category-articles']
 
@@ -39,6 +39,12 @@ export const menus = (value?: string): object => {
         url: route('administrator.galleries'),
         isActive: value == 'galleries',
         icon: GalleryHorizontalEnd,
+      },
+      {
+        title: "Data Guru",
+        url: route('administrator.teachers'),
+        isActive: value == 'teachers',
+        icon: GraduationCap,
       },
       {
         title: "User Management",

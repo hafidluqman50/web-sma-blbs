@@ -4,6 +4,7 @@ use App\Http\Controllers\Administrator\ArticleController;
 use App\Http\Controllers\Administrator\CategoryArticleController;
 use App\Http\Controllers\Administrator\DashboardController;
 use App\Http\Controllers\Administrator\GalleryController;
+use App\Http\Controllers\Administrator\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('administrator.dashboard');
@@ -33,4 +34,13 @@ Route::group(['prefix' => 'galleries'], function() {
    Route::get('/edit/{gallery}', [GalleryController::class, 'edit'])->name('administrator.galleries.edit');
    Route::put('/update/{gallery}', [GalleryController::class, 'update'])->name('administrator.galleries.update');
    Route::delete('/delete/{gallery}', [GalleryController::class, 'delete'])->name('administrator.galleries.delete');
+});
+
+Route::group(['prefix' => 'teachers'], function() {
+   Route::get('/', [TeacherController::class, 'index'])->name('administrator.teachers');
+   Route::get('/create', [TeacherController::class, 'create'])->name('administrator.teachers.create');
+   Route::post('/store', [TeacherController::class, 'store'])->name('administrator.teachers.store');
+   Route::get('/edit/{teacher}', [TeacherController::class, 'edit'])->name('administrator.teachers.edit');
+   Route::put('/update/{teacher}', [TeacherController::class, 'update'])->name('administrator.teachers.update');
+   Route::delete('/delete/{teacher}', [TeacherController::class, 'delete'])->name('administrator.teachers.delete');
 });

@@ -26,3 +26,10 @@ export interface Gallery {
         name: string
     }
 }
+
+export interface Teacher {
+    id: number
+    name: string
+    image: string
+    position: string
+}

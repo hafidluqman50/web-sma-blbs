@@ -12,12 +12,12 @@ use Inertia\Response;
 class GalleryController extends Controller
 {
     public function __construct(
-        private GalleryService $gallerService
+        private GalleryService $galleryService
     ){}
 
     public function index(IndexRequest $request): Response
     {
-        $galleries = $this->gallerService->getAll();
+        $galleries = $this->galleryService->getAll();
 
         return Inertia::render('Guest/Gallery/Main', compact('galleries'));
     }
