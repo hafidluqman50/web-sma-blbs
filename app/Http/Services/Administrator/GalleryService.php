@@ -46,7 +46,7 @@ class GalleryService
             'date'    => $request->date,
             'caption' => $request->caption,
             'image'   => config('filesystems.disks.s3.url').$urlImage,
-            'user_id' => 1
+            'user_id' => auth()->id()
         ];
 
         return $this->galleryRepository->store($data);

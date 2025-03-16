@@ -58,7 +58,7 @@ class ArticleService
                'content' => $request->content,
                'slug'    => Str::slug($request->title, '-'),
                'image'   => config('filesystems.disks.s3.url').$urlImage,
-               'user_id' => 1
+               'user_id' => auth()->id()
            ];
 
            $article = $this->articleRepository->store($data);
