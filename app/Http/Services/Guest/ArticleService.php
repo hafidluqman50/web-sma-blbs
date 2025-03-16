@@ -24,6 +24,11 @@ class ArticleService
         return $this->articleRepository->getAll();
     }
 
+    public function getWithLimit(int $limit): Collection
+    {
+        return $this->articleRepository->getWithLimit($limit);
+    }
+
     public function show(string $slug): Article
     {
         return $this->articleRepository->show($slug);

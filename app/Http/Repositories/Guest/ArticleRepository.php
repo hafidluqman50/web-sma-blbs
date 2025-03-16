@@ -17,7 +17,7 @@ class ArticleRepository
                ->when($request->filled('search'), function(Builder $query) use ($request) {
                    $query->where('title', 'like', '%'.$request->search.'%');
                })
-               ->orderBy('created_at', 'DESC')
+               ->orderBy('date', 'DESC')
                ->paginate(10)
                ->onEachSide(1)
                ->withQueryString();
@@ -26,6 +26,11 @@ class ArticleRepository
     public function getAll(): Collection
     {
         return Article::with(['articleDetails', 'user'])->orderBy('date', 'DESC')->get();
+    }
+
+    public function getWithLimit(int $limit): Collection
+    {
+        return Article::with(['articleDetails', 'user'])->limit($limit)->orderBy('date', 'DESC')->get();
     }
 
     public function show(string $slug): Article

@@ -16,3 +16,13 @@ export interface ArticleDetail {
     name: string
     slug_name: string
 }
+
+export interface Gallery {
+    id: number
+    date: string
+    caption: string
+    image: string
+    user: {
+        name: string
+    }
+}

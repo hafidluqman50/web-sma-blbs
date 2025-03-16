@@ -59,7 +59,7 @@ export default function Page({ article, category_articles, selected_categories }
 
     return(
         <>
-        <Head title="Data Berita" />
+        <Head title="Form Berita" />
         <AdministratorLayout data={menus('articles')}>
             <div className="py-12">
                 <div className="mx-auto sm:px-6 lg:px-8">

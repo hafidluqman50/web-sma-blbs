@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function FooterLayout() {
     return(
-      <footer className="relative bg-sky-600 pt-8 pb-6 text-white font-montserrat">
+      <footer className="relative bg-sky-600 pt-8 pb-6 text-white font-montserrat -z-10">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap text-center lg:text-left">
             <motion.div className="w-full lg:w-1/4 px-4 flex justify-center" whileTap={{scale:1.1}}>

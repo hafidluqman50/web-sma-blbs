@@ -39,7 +39,7 @@ export default function Page({ category_articles }: PageProps<SelectProps>): Rea
 
     return(
         <>
-        <Head title="Data Berita" />
+        <Head title="Form Berita" />
         <AdministratorLayout data={menus('articles')}>
             <div className="py-12">
                 <div className="mx-auto sm:px-6 lg:px-8">

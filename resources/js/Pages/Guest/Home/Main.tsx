@@ -31,15 +31,16 @@ import {
     ArticleCategory,
     ArticleTitle
 } from '@/components/pages/article'
-import { Article as ArticleType } from '../type';
+import { Article as ArticleType, Gallery } from '../type';
 import dayjs from 'dayjs'
 import calendar from 'dayjs/plugin/calendar'
 
 type ArticleProps = {
     articles:Array<ArticleType>
+    galleries:Array<Gallery>
 }
 
-export default function Page({ articles }: PageProps<ArticleProps>) {
+export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
     const {scrollYProgress} = useScroll()
 
     dayjs.extend(calendar)
@@ -204,21 +205,24 @@ export default function Page({ articles }: PageProps<ArticleProps>) {
     </section>
     <section id="galeri" className="relative bg-zinc-50 isolate py-10 lg:py-20 md:py-20 min-h-screen sm:py-20">
         <div className="grid grid-cols-1 grid-rows-1 lg:grid-rows-2 md:grid-rows-2 lg:grid-cols-4 md:grid-cols-4 gap-4 px-5 py-5 lg:px-0 md:px-0">
-            <motion.div className="lg:row-span-2 lg:col-span-2 md:row-span-2 md:col-span-4" whileTap={{ scale: 1.1 }}>
-                <img className="w-full h-full rounded-md" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/WhatsApp-Image-2022-06-27-at-4.38.49-PM-767x500.jpeg"/>
-            </motion.div>
-            <motion.div whileTap={{scale:1.1}}>
-                <img className="w-full h-full rounded-md" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/WhatsApp-Image-2022-06-27-at-5.14.04-PM-767x500.jpeg"/>
-            </motion.div>
-            <motion.div whileTap={{scale:1.1}}>
-                <img className="w-full h-full rounded-md" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/WhatsApp-Image-2022-06-27-at-5.14.16-PM-767x500.jpeg"/>
-            </motion.div>
-            <motion.div whileTap={{scale:1.1}}>
-                <img className="w-full h-full rounded-md" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/WhatsApp-Image-2022-06-27-at-5.14.17-PM-767x500.jpeg"/>
-            </motion.div>
-            <motion.div whileTap={{scale:1.1}}>
-                <img className="w-full h-full rounded-md" src="https://smkn7-smr.sch.id/wp-content/uploads/2022/06/WhatsApp-Image-2022-06-27-at-5.14.10-PM-767x500.jpeg"/>
-            </motion.div>
+            {
+                galleries.map((gallery, index) =>
+                    index == 0 ? (
+                        <motion.div className="lg:row-span-2 lg:col-span-2 md:row-span-2 md:col-span-4 p-4" whileTap={{ scale: 1.1 }}>
+                            <img className="w-full h-96 rounded-md" src={gallery.image} />
+                        </motion.div>
+                    ) : <></>
+                )
+            }
+            {
+                galleries.map((gallery, index) =>
+                    index >= 1 && index < 5 ? (
+                        <motion.div className="p-4" whileTap={{scale:1.1}}>
+                            <img className="w-full h-52 rounded-md" src={gallery.image} />
+                        </motion.div>
+                    ) : <></>
+                )
+            }
         </div>
     </section>
     <section id="jurusan" className="relative isolate bg-slate-100 py-10 min-h-screen sm:py-10 lg:pb-0 md:pb-0 sm:pb-0">

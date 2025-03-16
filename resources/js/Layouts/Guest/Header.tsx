@@ -78,7 +78,7 @@ const schoolProgram = [
 ]
 
 const academic = [
-    { name: 'BERITA', href: '/news' },
+    { name: 'BERITA', href: route('guest.articles') },
     { name: 'KALENDER AKADEMIK', href: '/academic-calendar' },
     { name: 'KEGIATAN', href: '/events' },
     { name: 'JADWAL', href: '/schedule' },
@@ -201,7 +201,7 @@ export default function HeaderLayout() {
             }
           </DropdownMenuContent>
         </DropdownMenu>
-          <Link href="/gallery" className="text-sm font-semibold leading-6">
+          <Link href={route('guest.galleries')} className="text-sm font-semibold leading-6">
             GALERI
           </Link>
           <Link href="/our-contact" className="text-sm font-semibold leading-6">

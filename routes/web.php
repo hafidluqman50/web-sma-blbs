@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Guest\ArticleController;
+use App\Http\Controllers\Guest\GalleryController;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -28,6 +29,10 @@ Route::group(['prefix' => 'news'], function() {
 Route::group(['prefix' => 'info-news'], function() {
     Route::get('/', [InfoArticleController::class, 'index'])->name('guest.info-articles');
     Route::get('/{slug}', [ArticleController::class, 'show'])->name('guest.info-articles.show');
+});
+
+Route::group(['prefix' => 'galleries'], function() {
+   Route::get('/', [GalleryController::class, 'index'])->name('guest.galleries');
 });
 
 require __DIR__.'/auth.php';

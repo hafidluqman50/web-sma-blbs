@@ -45,7 +45,7 @@ class ArticleController extends Controller
     {
         $this->articleService->store($request);
 
-        return redirect('administrator/articles')->with('success', 'Berhasil Input Artikel!');
+        return redirect('administrator/articles')->with('success', 'Berhasil Input Berita!');
     }
 
     public function edit(Article $article): Response
@@ -67,13 +67,13 @@ class ArticleController extends Controller
     {
         $this->articleService->update($article, $request);
 
-        return redirect('administrator/articles')->with('success', 'Berhasil Update Artikel');
+        return redirect('administrator/articles')->with('success', 'Berhasil Update Berita');
     }
 
     public function delete(Article $article): RedirectResponse
     {
         $this->articleService->delete($article);
 
-        return redirect('administrator/articles')->with('success', 'Berhasil Hapus Artikel');
+        return redirect('administrator/articles')->with('success', 'Berhasil Hapus Berita');
     }
 }
