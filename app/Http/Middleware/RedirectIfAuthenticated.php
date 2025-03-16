@@ -24,6 +24,10 @@ class RedirectIfAuthenticated
                 if($request->user()->role->slug == 'administrator') {
                     return redirect(RouteServiceProvider::ADMINISTRATOR_HOME);
                 }
+
+                if($request->user()->role->slug == 'operator') {
+                    return redirect(RouteServiceProvider::OPERATOR_HOME);
+                }
             }
         }
 

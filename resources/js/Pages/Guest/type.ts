@@ -33,3 +33,9 @@ export interface Teacher {
     image: string
     position: string
 }
+
+export interface AcademicCalendar {
+    id: number
+    year_academic: string
+    image: string
+}

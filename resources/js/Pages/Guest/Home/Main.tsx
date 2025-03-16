@@ -18,6 +18,7 @@ import {
 import imgKepsek from '@/assets/Kepsek_Edi_Purwanto.jpg'
 import imgKepsek2 from '@/assets/kepsek_2.jpg'
 import yppi_logo from '@/assets/yppi.png'
+import pondok_logo from '@/assets/pondok.png'
 import bsi_logo from '@/assets/Bank_Syariah_Indonesia.svg'
 
 import { Button,Carousel } from '@material-tailwind/react'
@@ -32,16 +33,17 @@ import {
     ArticleCategory,
     ArticleTitle
 } from '@/components/pages/article'
-import { Article as ArticleType, Gallery } from '../type';
+import { AcademicCalendar, Article as ArticleType, Gallery } from '../type';
 import dayjs from 'dayjs'
 import calendar from 'dayjs/plugin/calendar'
 
 type ArticleProps = {
     articles:Array<ArticleType>
     galleries:Array<Gallery>
+    academic_calendar:AcademicCalendar
 }
 
-export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
+export default function Page({ articles, galleries, academic_calendar }: PageProps<ArticleProps>) {
     const {scrollYProgress} = useScroll()
 
     dayjs.extend(calendar)
@@ -112,7 +114,12 @@ export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
             KALENDER AKADEMIK
         </p>
         <div className='p-10 flex justify-center'>
-            <img className='w-full lg:w-2/4 md:w-2/4' src='https://smaplusbudiluhur.is3.cloudhost.id/articles/1741992843.jpg'/>
+            {
+                academic_calendar && (
+                    <img className='w-full lg:w-2/4 md:w-2/4' src={academic_calendar.image} />
+                )
+            }
+
         </div>
     </section>
     <section id="info-terkini" className="relative isolate bg-stone-50 py-20 min-h[10rem]">
@@ -183,7 +190,7 @@ export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
                     ) : <></>)
                 }
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col px-3 lg:px-0 md:px-0">
                 <h4 className="font-outfit text-sky-400 text-2xl mb-2">
                     Lainnya
                 </h4>
@@ -271,13 +278,16 @@ export default function Page({ articles, galleries }: PageProps<ArticleProps>) {
         </div>
     </section>
     <section id="brand" className="relative isolate h-1/3 pb-0">
-        <div className="grid grid-cols-1 gap-9 justify-items-center lg:grid-cols-2 lg:gap-10 sm:grid-cols-1 sm:gap-10 lg:mt-22
-        container py-24 lg:px-32 md:px-32 sm:px-32 mx-auto">
+        <div className="grid grid-cols-1 gap-9 justify-items-center lg:grid-cols-3 lg:gap-10 sm:grid-cols-1 sm:gap-10 lg:mt-22
+        container py-24 px-3 lg:px-32 md:px-32 sm:px-32 mx-auto">
             <div>
                 <img className="w-4/4 h-32" src={yppi_logo}/>
             </div>
             <div>
-                <img className="w-2/4 sm:w-4/4 h-32" src={bsi_logo}/>
+                <img className="w-4/4 h-32" src={pondok_logo}/>
+            </div>
+            <div>
+                <img className="w-4/4 h-32" src={bsi_logo}/>
             </div>
         </div>
     </section>
