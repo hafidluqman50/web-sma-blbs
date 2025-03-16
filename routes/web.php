@@ -3,6 +3,7 @@
 use App\Http\Controllers\Guest\ArticleController;
 use App\Http\Controllers\Guest\GalleryController;
 use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\TeacherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,10 @@ Route::group(['prefix' => 'info-news'], function() {
 
 Route::group(['prefix' => 'galleries'], function() {
    Route::get('/', [GalleryController::class, 'index'])->name('guest.galleries');
+});
+
+Route::group(['prefix' => 'teachers'], function() {
+   Route::get('/', [TeacherController::class, 'index'])->name('guest.teachers');
 });
 
 require __DIR__.'/auth.php';

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function FooterLayout() {
     return(
-      <footer className="relative bg-sky-600 pt-8 pb-6 text-white font-montserrat -z-10">
+      <footer className="relative bg-sky-600 pt-8 pb-6 text-white font-montserrat">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap text-center lg:text-left">
             <motion.div className="w-full lg:w-1/4 px-4 flex justify-center" whileTap={{scale:1.1}}>
@@ -103,7 +103,7 @@ export default function FooterLayout() {
                     <li>
                       <a
                         className="block pb-2 text-sm"
-                        href="https://www.kemdikbud.go.id/"
+                        href="https://instagram.com/smablsamarinda"
                         target="_blank"
                       >
                         INSTAGRAM
@@ -112,7 +112,7 @@ export default function FooterLayout() {
                     <li>
                       <a
                         className="block pb-2 text-sm"
-                        href="https://web.disdikbud.kaltimprov.go.id/"
+                        href="https://facebook.com/p/SMA-Budi-Luhur-Samarinda-100087376814291/"
                         target="_blank"
                       >
                         FACEBOOK
@@ -121,7 +121,7 @@ export default function FooterLayout() {
                     <li>
                       <a
                         className="block pb-2 text-sm"
-                        href="https://disdik.samarinda.go.id"
+                        href="https://youtube.com/@smabudiluhursamarinda9794"
                         target="_blank"
                       >
                         YOUTUBE

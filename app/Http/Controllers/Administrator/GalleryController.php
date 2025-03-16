@@ -42,7 +42,7 @@ class GalleryController extends Controller
     {
         $gallery = $this->galleryService->getById($gallery->id);
 
-        return Inertia::render('Administrator/Gallery/Edit', compact('gallery',));
+        return Inertia::render('Administrator/Gallery/Edit', compact('gallery'));
     }
 
     public function update(Gallery $gallery, UpdateRequest $request): RedirectResponse

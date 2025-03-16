@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Administrator\Gallery;
+namespace App\Http\Requests\Administrator\Teacher;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date'    => ['required', 'string', 'date_format:Y-m-d'],
-            'caption' => ['required', 'string'],
-            'image'   => ['sometimes', 'nullable', 'file', 'mimes:jpg,png']
+            'name'     => ['required', 'string'],
+            'position' => ['required', 'string'],
+            'image'    => ['required', 'file', 'mimes:jpg,png']
         ];
     }
 }
