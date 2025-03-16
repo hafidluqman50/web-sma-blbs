@@ -3,6 +3,7 @@
 use App\Http\Controllers\Administrator\ArticleController;
 use App\Http\Controllers\Administrator\CategoryArticleController;
 use App\Http\Controllers\Administrator\DashboardController;
+use App\Http\Controllers\Administrator\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('administrator.dashboard');
@@ -23,4 +24,13 @@ Route::group(['prefix' => 'category-articles'], function() {
    Route::get('/edit/{categoryArticle}', [CategoryArticleController::class, 'edit'])->name('administrator.category-articles.edit');
    Route::put('/update/{categoryArticle}', [CategoryArticleController::class, 'update'])->name('administrator.category-articles.update');
    Route::delete('/delete/{categoryArticle}', [CategoryArticleController::class, 'delete'])->name('administrator.category-articles.delete');
+});
+
+Route::group(['prefix' => 'galleries'], function() {
+   Route::get('/', [GalleryController::class, 'index'])->name('administrator.galleries');
+   Route::get('/create', [GalleryController::class, 'create'])->name('administrator.galleries.create');
+   Route::post('/store', [GalleryController::class, 'store'])->name('administrator.galleries.store');
+   Route::get('/edit/{gallery}', [GalleryController::class, 'edit'])->name('administrator.galleries.edit');
+   Route::put('/update/{gallery}', [GalleryController::class, 'update'])->name('administrator.galleries.update');
+   Route::delete('/delete/{gallery}', [GalleryController::class, 'delete'])->name('administrator.galleries.delete');
 });

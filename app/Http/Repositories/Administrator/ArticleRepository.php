@@ -19,7 +19,7 @@ class ArticleRepository
     {
         return Article::with(['articleDetails', 'user'])->when($request->filled('search'), function(Builder $query) use ($request) {
             return $query->where('title', 'like', '%'.$request->search.'%');
-        })->orderBy('created_at', 'DESC')->paginate(10)->onEachSide(1)->withQueryString();
+        })->orderBy('date', 'DESC')->paginate(10)->onEachSide(1)->withQueryString();
     }
 
     public function getById(int $id): Article

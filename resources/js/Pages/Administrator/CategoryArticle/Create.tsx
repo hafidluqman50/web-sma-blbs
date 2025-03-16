@@ -23,7 +23,7 @@ export default function Page(): ReactNode {
 
     return(
         <>
-        <Head title="Data Kategori Berita" />
+        <Head title="Form Kategori Berita" />
         <AdministratorLayout data={menus('category-articles')}>
             <div className="py-12">
                 <div className="mx-auto sm:px-6 lg:px-8">
