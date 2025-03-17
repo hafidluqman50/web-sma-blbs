@@ -271,7 +271,7 @@ export default function Page({ articles, galleries, academic_calendar }: PagePro
           <CardContent>
             <p className="text-center font-semibold text-lg mb-4 mt-4 text-green-400">IT</p>
             <p className="text-center text-md">
-            Peserta didik akan mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika.
+            Peserta didik mengikuti pembelajaran secara intensif menggunakan kurikulum merdeka dan peserta didik mendapatkan materi tamban mengenai IT seperti Programming dan Desain Grafis.
             </p>
           </CardContent>
         </Card>
