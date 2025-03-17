@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Guest\AboutUsController;
 use App\Http\Controllers\Guest\AcademicCalendarController;
 use App\Http\Controllers\Guest\ArticleController;
 use App\Http\Controllers\Guest\GalleryController;
 use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\OurContactController;
 use App\Http\Controllers\Guest\TeacherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -43,6 +45,14 @@ Route::group(['prefix' => 'teachers'], function() {
 
 Route::group(['prefix' => 'academic-calendars'], function() {
    Route::get('/', [AcademicCalendarController::class, 'index'])->name('guest.academic-calendars');
+});
+
+Route::group(['prefix' => 'about-us'], function() {
+   Route::get('/{slug}', [AboutUsController::class, 'index'])->name('guest.about-us');
+});
+
+Route::group(['prefix' => 'our-contact'], function() {
+   Route::get('/', [OurContactController::class, 'index'])->name('guest.our-contact');
 });
 
 require __DIR__.'/auth.php';

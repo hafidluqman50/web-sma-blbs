@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 
 import {
@@ -85,7 +85,8 @@ const academic = [
     { name: 'DATA GURU', href: route('guest.teachers') },
 ]
 
-import logoSmkN7Samarinda from '@/assets/sma.png'
+import logoSmaBlbs from '@/assets/sma.png'
+import { PageProps } from '@/types';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -110,14 +111,17 @@ export default function HeaderLayout() {
 
   dayjs().locale('id').format()
 
+  const { management_menu } = usePage<PageProps>().props
+
   return (
     <header className="bg-sky-600 font-montserrat opacity-1 fixed top-0 z-10 w-full text-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:flex-1">
+        <div className="flex lg:flex-1 items-center gap-2">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">SMA Budi Luhur Samarinda</span>
-            <img className="h-12 w-auto" src={logoSmkN7Samarinda} alt="SMA Budi Luhur Samarinda Logo" />
+            <img className="h-12 w-auto" src={logoSmaBlbs} alt="SMA Budi Luhur Samarinda Logo" />
           </Link>
+          <p className='font-semibold'>SMA Budi Luhur Samarinda</p>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -134,36 +138,13 @@ export default function HeaderLayout() {
           <DropdownMenuTrigger className="text-sm font-semibold leading-6">PROFIL</DropdownMenuTrigger>
           <DropdownMenuContent>
             {
-                profile.map((data, index) => {
+                management_menu.profil.map((data, index) => {
                     return(
-                        data.href != '#' ?
-                            data.href == '#' ?
-                                <DropdownMenuItem className="text-sm font-normal leading-6 font-montserrat" key={data.name}>
-                                    {data.name}
-                                </DropdownMenuItem> :
-                            <Link href={data.href} key={data.name}>
-                                <DropdownMenuItem className="text-sm font-normal leading-6 font-montserrat" key={data.href}>
-                                    {data.name}
-                                </DropdownMenuItem>
-                            </Link> :
-                            <DropdownMenuSub key={data.name}>
-                                <DropdownMenuSubTrigger className="text-sm font-normal leading-6 font-montserrat">{data.name}</DropdownMenuSubTrigger>
-                                <DropdownMenuPortal>
-                                  <DropdownMenuSubContent key={data.href}>
-                                  {
-                                data.child.map((menuChild, key) => {
-                                    return(
-                                        <Link href={menuChild.href} key={menuChild.name}>
-                                            <DropdownMenuItem className="text-sm font-normal leading-6 font-montserrat">
-                                                {menuChild.name}
-                                            </DropdownMenuItem>
-                                        </Link>
-                                    )
-                                })
-                                }
-                              </DropdownMenuSubContent>
-                            </DropdownMenuPortal>
-                        </DropdownMenuSub>
+                        <Link href={data.href} key={data.name}>
+                            <DropdownMenuItem className="text-sm font-normal leading-6 font-montserrat" key={data.href}>
+                                {data.name}
+                            </DropdownMenuItem>
+                        </Link>
                     )
                 })
             }
@@ -173,7 +154,7 @@ export default function HeaderLayout() {
           <DropdownMenuTrigger className="text-sm font-semibold leading-6 font-montserrat">PROGRAM SEKOLAH</DropdownMenuTrigger>
           <DropdownMenuContent>
             {
-                schoolProgram.map((data, index) => {
+                management_menu.school_program.map((data, index) => {
                     return(
                         <Link href={data.href} key={data.name}>
                             <DropdownMenuItem className="text-sm font-normal leading-6 font-montserrat">
@@ -236,35 +217,14 @@ export default function HeaderLayout() {
                         />
                       </Disclosure.Button>
                       <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...profile].map((item) => (
-                            item.href != '#' ?
+                        {[...management_menu.profil].map((item) => (
                           <Disclosure.Button
                             key={item.name}
                             as="div"
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             <Link href={item.href} onClick={() => closeMenu('both')}>{item.name}</Link>
-                          </Disclosure.Button> :
-                          <>
-                          <button
-                            key={item.name}
-                            className="w-full flex rounded-lg py-2 pl-6 pr-3 text-sm leading-7 text-gray-900 hover:bg-gray-50"
-                            onClick={() => setSubMenuOpen(!subMenuOpen)}
-                          >
-                            {item.name}
-                            <ChevronDownIcon
-                              className={classNames(subMenuOpen ? 'rotate-180' : '', 'mt-1 mx-2 h-5 w-5 flex-none')}
-                              aria-hidden="true"
-                              key={item.name}
-                            />
-                          </button>
-                          <div className={`${subMenuOpen ? 'flex flex-col text-sm px-10' : 'hidden'}`} key={item.name}>
-                          {[...item.child].map((data) => (
-                            <Link href={data.href} className="mb-3" key={data.name}
-                            onClick={() => closeMenu('both')}>{data.name}</Link>
-                           ))}
-                          </div>
-                          </>
+                          </Disclosure.Button>
                         ))}
                       </Disclosure.Panel>
                     </>
@@ -281,7 +241,7 @@ export default function HeaderLayout() {
                         />
                       </Disclosure.Button>
                       <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...schoolProgram].map((item) => (
+                        {[...management_menu.school_program].map((item) => (
                           <Disclosure.Button
                             key={item.name}
                             as="div"
@@ -319,7 +279,7 @@ export default function HeaderLayout() {
                   )}
                 </Disclosure>
                 <Link
-                  href="/gallery"
+                  href={route('guest.galleries')}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 hover:bg-gray-50"
                   onClick={() => closeMenu('both')}
                 >

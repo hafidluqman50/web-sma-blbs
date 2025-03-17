@@ -2,11 +2,15 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Services\Guest\ManagementMenuService;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
+    public function __construct(
+        private ManagementMenuService $managementMenuService
+    ){}
     /**
      * The root template that is loaded on the first page visit.
      *
@@ -38,6 +42,10 @@ class HandleInertiaRequests extends Middleware
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),
                 'fail' => fn () => $request->session()->get('fail')
+            ],
+            'management_menu' => [
+                'profil' => $this->managementMenuService->getByLocationMenu('profil'),
+                'school_program' => $this->managementMenuService->getByLocationMenu('program-sekolah')
             ]
         ];
     }

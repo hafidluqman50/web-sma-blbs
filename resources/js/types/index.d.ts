@@ -11,6 +11,11 @@ export interface PaginationData {
    active:boolean
 }
 
+export interface ManagementMenu {
+    name: string
+    href: string
+}
+
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     auth: {
         user: User;
@@ -21,4 +26,8 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         fail: string|null;
     };
     page_num:number;
+    management_menu: {
+        profil: Array<ManagementMenu>
+        school_program: Array<ManagementMenu>
+    }
 };

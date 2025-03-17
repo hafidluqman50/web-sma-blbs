@@ -5,6 +5,7 @@ use App\Http\Controllers\Administrator\ArticleController;
 use App\Http\Controllers\Administrator\CategoryArticleController;
 use App\Http\Controllers\Administrator\DashboardController;
 use App\Http\Controllers\Administrator\GalleryController;
+use App\Http\Controllers\Administrator\ManagementMenuController;
 use App\Http\Controllers\Administrator\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,5 +55,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit/{academicCalendar}', [AcademicCalendarController::class, 'edit'])->name('administrator.academic-calendars.edit');
         Route::put('/update/{academicCalendar}', [AcademicCalendarController::class, 'update'])->name('administrator.academic-calendars.update');
         Route::delete('/delete/{academicCalendar}', [AcademicCalendarController::class, 'delete'])->name('administrator.academic-calendars.delete');
+    });
+
+    Route::group(['prefix' => 'management-menus'], function () {
+        Route::get('/', [ManagementMenuController::class, 'index'])->name('administrator.management-menus');
+        Route::get('/create', [ManagementMenuController::class, 'create'])->name('administrator.management-menus.create');
+        Route::post('/store', [ManagementMenuController::class, 'store'])->name('administrator.management-menus.store');
+        Route::get('/edit/{managementMenu}', [ManagementMenuController::class, 'edit'])->name('administrator.management-menus.edit');
+        Route::put('/update/{managementMenu}', [ManagementMenuController::class, 'update'])->name('administrator.management-menus.update');
+        Route::delete('/delete/{managementMenu}', [ManagementMenuController::class, 'delete'])->name('administrator.management-menus.delete');
     });
 });

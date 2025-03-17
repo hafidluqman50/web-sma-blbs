@@ -64,15 +64,6 @@ export default function FooterLayout() {
                         DAPODIKMEN
                       </a>
                     </li>
-                    <li>
-                      <a
-                        className="block pb-2 text-sm"
-                        href="https://www.uny.ac.id"
-                        target="_blank"
-                      >
-                        UNIVERSITAS NEGERI YOGYAKARTA
-                      </a>
-                    </li>
                   </ul>
                 </div>
                 <div className="w-full mt-5 lg:mt-0 lg:w-4/12 px-10">
@@ -137,7 +128,6 @@ export default function FooterLayout() {
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm font-semibold py-1">
                 Copyright © {new Date().getFullYear()} SMA Budi Luhur Samarinda {" "}<br/>
-                Made With <Link href="https://inertiajs.com" target="_blank">Inertia JS x React TS</Link>
               </div>
             </div>
           </div>

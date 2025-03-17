@@ -39,3 +39,10 @@ export interface AcademicCalendar {
     year_academic: string
     image: string
 }
+
+export interface ManagementMenu {
+    id: number
+    name: string
+    content: string
+    slug: string
+}
