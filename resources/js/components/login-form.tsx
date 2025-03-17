@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FormEventHandler, useEffect } from "react"
 import { useForm } from "@inertiajs/react"
+import InputError from "./InputError"
 
 export function LoginForm({
   className,
@@ -55,6 +56,7 @@ export function LoginForm({
                   onChange={(event) => setData('email', event.target.value)}
                   required
                 />
+                <InputError message={errors.email} className="mt-2" />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="password">Password</Label>
@@ -64,6 +66,7 @@ export function LoginForm({
                     onChange={(event) => setData('password', event.target.value)}
                     required
                 />
+                <InputError message={errors.password} className="mt-2" />
               </div>
               <Button type="submit" className="w-full" disabled={processing}>
                 Login

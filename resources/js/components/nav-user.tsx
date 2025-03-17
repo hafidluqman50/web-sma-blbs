@@ -88,20 +88,22 @@ export function NavUser({
                                 </Avatar>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-semibold">
-                                        {user.name}
+                                        {auth?.user?.name ?? user.name}
                                     </span>
                                     <span className="truncate text-xs">
-                                        {user.email}
+                                        {auth?.user?.email ?? user.email}
                                     </span>
                                 </div>
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <BadgeCheck />
-                                Account
-                            </DropdownMenuItem>
+                            <Link href="/profile">
+                                <DropdownMenuItem>
+                                    <BadgeCheck />
+                                    Account
+                                </DropdownMenuItem>
+                            </Link>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <Link href={route("logout")} method="post">

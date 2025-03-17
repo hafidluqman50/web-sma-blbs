@@ -84,7 +84,7 @@ export default function Page({management_menus, page_num}: PageProps<ManagementM
             <Input
                 type="search"
                 name="search"
-                placeholder="Cari Kategori Berita"
+                placeholder="Cari Menu"
                 className="w-1/2 mt-2"
                 onChange={(event) => setSearch(event.target.value)}
             />
