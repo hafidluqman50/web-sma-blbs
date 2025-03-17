@@ -60,8 +60,8 @@ export const menus = (value?: string): object => {
       },
       {
         title: "User Management",
-        url: "#",
-        isActive: value == 'user-management',
+        url: route('administrator.users'),
+        isActive: value == 'users',
         icon: Users,
       },
     ],

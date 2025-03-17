@@ -84,7 +84,7 @@ export default function Page({teachers, page_num}: PageProps<TeacherProps>): Rea
                     <Input
                         type="search"
                         name="search"
-                        placeholder="Cari Kategori Berita"
+                        placeholder="Cari Data Guru"
                         className="w-1/2 mt-2"
                         onChange={(event) => setSearch(event.target.value)}
                     />

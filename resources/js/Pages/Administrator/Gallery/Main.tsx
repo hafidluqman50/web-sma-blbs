@@ -84,7 +84,7 @@ export default function Page({galleries, page_num}: PageProps<GalleryProps>): Re
             <Input
                 type="search"
                 name="search"
-                placeholder="Cari Kategori Berita"
+                placeholder="Cari Galeri"
                 className="w-1/2 mt-2"
                 onChange={(event) => setSearch(event.target.value)}
             />

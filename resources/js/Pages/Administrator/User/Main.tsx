@@ -13,7 +13,7 @@ import { Head, Link, router, usePage } from "@inertiajs/react";
 import { menus } from "../sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { AcademicCalendar } from "./type";
+import { User } from "./type";
 import { PageProps, PaginationData } from "@/types";
 import { Pencil, Trash2 } from "lucide-react";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -22,16 +22,16 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import dayjs from 'dayjs';
 import 'dayjs/locale/id'
 
-interface AcademicCalendars {
-    data:Array<AcademicCalendar>;
+interface Users {
+    data:Array<User>;
     links:Array<PaginationData>;
 }
 
-type AcademicCalendarProps = {
-    academic_calendars:AcademicCalendars
+type UserProps = {
+    users:Users
 }
 
-export default function Page({academic_calendars, page_num}: PageProps<AcademicCalendarProps>): ReactNode {
+export default function Page({users, page_num}: PageProps<UserProps>): ReactNode {
 
     dayjs.locale('id')
 
@@ -40,13 +40,13 @@ export default function Page({academic_calendars, page_num}: PageProps<AcademicC
 
     const deletePrompt = (id: number) => {
         Swal.fire({
-            title: "Yakin Hapus Data Kalender Akademik?",
+            title: "Yakin Hapus Data Guru?",
             showDenyButton: true,
             confirmButtonText: "Hapus",
             denyButtonText: `Batal`
         }).then((result: SweetAlertResult) => {
             if(result.isConfirmed) {
-                router.delete(route('administrator.academic-calendars.delete', id))
+                router.delete(route('administrator.users.delete', id))
             }
         })
     }
@@ -55,8 +55,8 @@ export default function Page({academic_calendars, page_num}: PageProps<AcademicC
 
     return(
         <>
-            <Head title="Data Kalender Akademik" />
-            <AdministratorLayout data={menus('academic-calendars')}>
+            <Head title="Data User" />
+            <AdministratorLayout data={menus('users')}>
                 {
                     session.success && (
                     <Alert id="alert-success" className="mb-5 flex" variant="success">
@@ -76,7 +76,7 @@ export default function Page({academic_calendars, page_num}: PageProps<AcademicC
                     </Alert>
                 )}
             <div className="flex">
-                    <Link href={route('administrator.academic-calendars.create')}>
+                    <Link href={route('administrator.users.create')}>
                         <Button className="bg-sky-600 hover:bg-sky-800 m-2">
                             Tambah Data
                         </Button>
@@ -84,12 +84,12 @@ export default function Page({academic_calendars, page_num}: PageProps<AcademicC
                     <Input
                         type="search"
                         name="search"
-                        placeholder="Cari Tahun Ajaran"
+                        placeholder="Cari Nama Pengguna"
                         className="w-1/2 mt-2"
                         onChange={(event) => setSearch(event.target.value)}
                     />
                     <Button className="m-2" onClick={() => {
-                        router.get(route('administrator.academic-calendars', {
+                        router.get(route('administrator.users', {
                             search
                         }))
                     }}>Cari</Button>
@@ -98,34 +98,34 @@ export default function Page({academic_calendars, page_num}: PageProps<AcademicC
                 <TableHeader>
                 <TableRow>
                     <TableHead className="border border-slate-200">No.</TableHead>
-                    <TableHead className="border border-slate-200">Tahun Ajaran</TableHead>
-                    <TableHead className="border border-slate-200">Gambar</TableHead>
+                    <TableHead className="border border-slate-200">Nama</TableHead>
+                    <TableHead className="border border-slate-200">Email</TableHead>
                     <TableHead className="border border-slate-200">#</TableHead>
                 </TableRow>
                 </TableHeader>
                 <TableBody>
                     {
-                        academic_calendars.data.length == 0 ?
+                        users.data.length == 0 ?
                         <TableRow>
-                            <TableCell colSpan={4} align="center">
+                            <TableCell colSpan={5} align="center">
                                 Empty Data!
                             </TableCell>
                         </TableRow> :
-                        academic_calendars.data.map((row, key) => (
+                        users.data.map((row, key) => (
                             <TableRow key={key}>
                                 <TableCell className="border border-slate-200">
                                     {page_num+key}
                                 </TableCell>
                                 <TableCell className="border border-slate-200">
-                                    {row.year_academic}
+                                    {row.name}
                                 </TableCell>
-                                <TableCell className="border border-slate-200" width={300}>
-                                    <img src={row.image} />
+                                <TableCell className="border border-slate-200">
+                                    {row.email}
                                 </TableCell>
                                 <TableCell>
                                     <div className="flex space-x-4">
                                         <Button className="bg-amber-500 text-white hover:bg-amber-500" asChild>
-                                            <Link href={route('administrator.academic-calendars.edit', row.id)}><Pencil /></Link>
+                                            <Link href={route('administrator.users.edit', row.id)}><Pencil /></Link>
                                         </Button>
                                         <Button variant='destructive' onClick={() => deletePrompt(row.id)}>
                                             <Trash2 />
@@ -142,7 +142,7 @@ export default function Page({academic_calendars, page_num}: PageProps<AcademicC
                         <Pagination>
                             <PaginationContent>
                             {
-                                academic_calendars.links.map((pagination, key) => (
+                                users.links.map((pagination, key) => (
                                     <div key={key}>
                                     {
                                         pagination.label.includes('Previous') ?

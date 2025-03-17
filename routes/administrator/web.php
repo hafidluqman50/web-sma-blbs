@@ -7,9 +7,10 @@ use App\Http\Controllers\Administrator\DashboardController;
 use App\Http\Controllers\Administrator\GalleryController;
 use App\Http\Controllers\Administrator\ManagementMenuController;
 use App\Http\Controllers\Administrator\TeacherController;
+use App\Http\Controllers\Administrator\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'user.has.role:administrator'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('administrator.dashboard');
 
     Route::group(['prefix' => 'articles'], function() {
@@ -65,4 +66,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/update/{managementMenu}', [ManagementMenuController::class, 'update'])->name('administrator.management-menus.update');
         Route::delete('/delete/{managementMenu}', [ManagementMenuController::class, 'delete'])->name('administrator.management-menus.delete');
     });
+
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('/', [UserController::class, 'index'])->name('administrator.users');
+        Route::get('/create', [UserController::class, 'create'])->name('administrator.users.create');
+        Route::post('/store', [UserController::class, 'store'])->name('administrator.users.store');
+        Route::get('/edit/{user}', [UserController::class, 'edit'])->name('administrator.users.edit');
+        Route::put('/update/{user}', [UserController::class, 'update'])->name('administrator.users.update');
+        Route::delete('/delete/{user}', [UserController::class, 'delete'])->name('administrator.users.delete');
+    });
+
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('administrator.profile');
 });
