@@ -1,14 +1,47 @@
 import {Link} from '@inertiajs/react'
-import logoSmkN7Samarinda from '@/assets/sma.png'
+import logoSmaBlbs from '@/assets/sma.png'
+import logoSmpBlbs from '@/assets/smp.png'
 import { motion } from 'framer-motion'
 
 export default function FooterLayout() {
+
+    const hostName = window.location.hostname == 'smp-blbs-smr.sch.id' ? window.location.hostname : 'sma-blbs-smr.sch.id'
+
+    const classHostName = [
+        {
+            host: 'smp-blbs-smr.sch.id',
+            className: "bg-emerald-600",
+            logo: logoSmpBlbs,
+            linkConnect: [
+                {
+                    name: "E-LIBRARY",
+                    href: "https://e-library.smp-blb-smr.sch.id"
+                }
+            ],
+            text: 'SMP Budi Luhur Samarinda'
+        },
+        {
+            host: 'sma-blbs-smr.sch.id',
+            className: "bg-sky-600",
+            logo: logoSmaBlbs,
+            linkConnect: [
+                {
+                    name: "E-LIBRARY",
+                    href: "https://e-library.sma-blb-smr.sch.id"
+                }
+            ],
+            text: 'SMA Budi Luhur Samarinda'
+        }
+    ]
+
+    const getClassHostName = classHostName.find(({host}) => host === hostName)
+
     return(
-      <footer className="relative bg-sky-600 pt-8 pb-6 text-white font-montserrat">
+      <footer className={`relative ${getClassHostName!.className} pt-8 pb-6 text-white font-montserrat`}>
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap text-center lg:text-left">
             <motion.div className="w-full lg:w-1/4 px-4 flex justify-center" whileTap={{scale:1.1}}>
-                <img className="h-12 w-auto ml-2 sm:mb-6" src={logoSmkN7Samarinda} alt="" />
+                <img className="h-12 w-auto ml-2 sm:mb-6" src={getClassHostName!.logo} alt="" />
             </motion.div>
             <div className="w-full lg:w-9/12 px-4">
               <div className="flex flex-wrap items-top mb-6">
@@ -73,15 +106,19 @@ export default function FooterLayout() {
                   </span>
                   <hr className="my-6 border-lightBlue-700" />
                   <ul className="list-unstyled">
-                    <li>
-                      <a
-                        className="block pb-2 text-sm"
-                        href="https://e-library.sma-blbs-smr.sch.id"
-                        target="_blank"
-                      >
-                          E-LIBRARY
-                      </a>
-                    </li>
+                      {
+                          getClassHostName!.linkConnect.map((value) => (
+                            <li>
+                              <a
+                                className="block pb-2 text-sm"
+                                href={value.href}
+                                target="_blank"
+                              >
+                                  {value.name}
+                              </a>
+                            </li>
+                          ))
+                      }
                   </ul>
                 </div>
                 <div className="w-full mt-5 lg:mt-0 lg:w-4/12 px-4">
@@ -127,7 +164,7 @@ export default function FooterLayout() {
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm font-semibold py-1">
-                Copyright © {new Date().getFullYear()} SMA Budi Luhur Samarinda {" "}<br/>
+                Copyright © {new Date().getFullYear()} {getClassHostName!.text} {" "}<br/>
               </div>
             </div>
           </div>

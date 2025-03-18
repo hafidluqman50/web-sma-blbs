@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/sidebar"
 
 export function AppSidebar({ data, ...props }: React.ComponentProps<typeof Sidebar> & {data: any}) {
+    const hostName = window.location.hostname == 'smp-blbs-smr.sch.id' ? 'SMP Budi Luhur SMD' : 'SMA Budi Luhur SMD'
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -31,7 +33,7 @@ export function AppSidebar({ data, ...props }: React.ComponentProps<typeof Sideb
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">SMA Budi Luhur SMD</span>
+                    <span className="truncate font-semibold">{hostName}</span>
                 </div>
               </a>
             </SidebarMenuButton>

@@ -86,6 +86,8 @@ const academic = [
 ]
 
 import logoSmaBlbs from '@/assets/sma.png'
+import logoSmpBlbs from '@/assets/smp.png'
+
 import { PageProps } from '@/types';
 
 function classNames(...classes: string[]) {
@@ -113,15 +115,34 @@ export default function HeaderLayout() {
 
   const { management_menu } = usePage<PageProps>().props
 
+  const hostName = window.location.hostname == 'smp-blbs-smr.sch.id' ? window.location.hostname : 'sma-blbs-smr.sch.id'
+
+  const classHostName = [
+      {
+          host: 'smp-blbs-smr.sch.id',
+          className: "bg-emerald-600",
+          logo: logoSmpBlbs,
+          text: 'SMP Budi Luhur Samarinda'
+      },
+      {
+          host: 'sma-blbs-smr.sch.id',
+          className: "bg-sky-600",
+          logo: logoSmaBlbs,
+          text: 'SMA Budi Luhur Samarinda'
+      }
+  ]
+
+  const getClassHostName = classHostName.find(({host}) => host === hostName)
+
   return (
-    <header className="bg-sky-600 font-montserrat opacity-1 fixed top-0 z-10 w-full text-white">
+    <header className={`${getClassHostName!.className} font-montserrat opacity-1 fixed top-0 z-10 w-full text-white`}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1 items-center gap-2">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">SMA Budi Luhur Samarinda</span>
-            <img className="h-12 w-auto" src={logoSmaBlbs} alt="SMA Budi Luhur Samarinda Logo" />
+            <span className="sr-only">{getClassHostName!.text}</span>
+            <img className="h-12 w-auto" src={getClassHostName!.logo} alt="SMA Budi Luhur Samarinda Logo" />
           </Link>
-          <p className='font-semibold'>SMA Budi Luhur Samarinda</p>
+          <p className='font-semibold'>{getClassHostName!.text}</p>
         </div>
         <div className="flex lg:hidden">
           <button
