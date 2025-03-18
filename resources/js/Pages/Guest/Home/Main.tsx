@@ -310,8 +310,8 @@ export default function Page({ articles, galleries, academic_calendar }: PagePro
         <p className="text-center font-semibold text-xl font-noto-sans mb-10 lg:mb-0 md:mb-0">
             JURUSAN
         </p>
-        <div className="grid gap-5 lg:grid-cols-3 lg:gap-15 sm:grid-cols-1 sm:gap-10 lg:mt-22
-        container px-2 py-2 lg:py-24 md:py-24 lg:px-20 md:px-32 mx-auto font-work-sans">
+        <div className={`grid gap-5 lg:grid-cols-${getContent!.content.subject.length} lg:gap-15 sm:grid-cols-1 sm:gap-10 lg:mt-22
+        container px-2 py-2 lg:py-24 md:py-24 lg:px-20 md:px-32 mx-auto font-work-sans`}>
         <Card>
           <CardHeader className="bg-sky-400 h-48 rounded-t-lg">
             <AcademicCapIcon className="text-white text-center"/>
