@@ -17,6 +17,7 @@ import {
 
 import imgKepsek from '@/assets/Kepsek_Edi_Purwanto.jpg'
 import imgKepsek2 from '@/assets/kepsek_2.jpg'
+import imgKepsekIbu from '@/assets/kepsek_ibu.jpg'
 import yppi_logo from '@/assets/yppi.png'
 import pondok_logo from '@/assets/pondok.png'
 import bsi_logo from '@/assets/Bank_Syariah_Indonesia.svg'
@@ -47,6 +48,72 @@ export default function Page({ articles, galleries, academic_calendar }: PagePro
     const {scrollYProgress} = useScroll()
 
     dayjs.extend(calendar)
+
+    console.log(window.location.hostname)
+
+    const hostName = window.location.hostname == 'smp-blbs-smr.sch.id' ? 'smp-blbs-smr.sch.id' : 'sma-blbs-smr.sch.id'
+
+    const contentByHostName = [
+        {
+            host:'sma-blbs-smr.sch.id',
+            content: {
+                principal: {
+                    name: 'Edi Purwanto, M.Pd',
+                    title: 'CETAK GENERASI BERAHLAKUL KARIMAH PROFESIONAL DAN RELIGIUS MENYONGSONG INDONESIA EMAS 2045',
+                    text: 'Membimbing peserta didik mengenali dan mengembangkan Potensi, Bakat, dan minatnya menjadi kompetensi yang berdaya saing, terampil menerapkan Ahlakul karimah, profesional dalam Penguasaan Ilmu Pengetahuan dan teknologi, menjadi hamba yang taat beragama. siap menjadi pemenang masa depan bukan penguasa masa lalu.',
+                    images: [
+                        {
+                            url: imgKepsek
+                        },
+                        {
+                            url: imgKepsek2
+                        }
+                    ]
+                },
+                subject: [
+                    {
+                        title: 'REGULER/UMUM',
+                        content: "Peserta didik mengikuti Pembelajaran intensif di kelas menggunakan kurikulum merdeka, dan peserta didik dapat mempunyai keahlian tambahan dengan mengikuti kegiatan ekstrakurikuler yang ada antara lain : Ekskul Astronomi, Biologi, English Fun, Fisika, Kimia, Matematika, Jurnalistik, PIK - R, PMR, Tata Boga dan Tahfidz Qur'an.",
+                    },
+                    {
+                        title: 'ATLET',
+                        content: "Peserta didik mengikuti pembelajaran secara intensif menggunakan kurikulum merdeka dan peserta didik mendapatkan pembinaan khusus sesuai dengan kelas yang telah dipilih (Forsgi Atau Persinas) dan dipersilahkan mengikuti ekskul yang telah disediakan."
+                    },
+                    {
+                        title: 'IT',
+                        content: "Peserta didik mengikuti pembelajaran secara intensif menggunakan kurikulum merdeka dan peserta didik mendapatkan materi tamban mengenai IT seperti Programming dan Desain Grafis."
+                    }
+                ]
+            }
+        },
+        {
+            host:'smp-blbs-smr.sch.id',
+            content: {
+                principal: {
+                    name: 'Lisma Nurhidayah, S.Pd',
+                    title: 'BERKARAKTER LUHUR - BERPRESTASI BERSAMA',
+                    text: 'Sebagai bagian dari Kota Samarinda yang bercita-cita menjadi pusat peradaban, maka SMP Budi Luhur Samarinda hadir sebagai tempat belajar dan bertumbuh, di mana pendidikan akademik berpadu dengan pembentukan karakter. Melalui program pembiasaan 29 karakter luhur, kami membimbing peserta didik untuk menjadi pribadi yang profesional religius , berintegritas, dan siap menghadapi masa depan.',
+                    images: [
+                        {
+                            url: imgKepsekIbu
+                        }
+                    ]
+                },
+                subject: [
+                    {
+                        title: 'REGULER/UMUM',
+                        content: "Peserta didik mengikuti Pembelajaran intensif di kelas menggunakan kurikulum merdeka, dan peserta didik dapat mempunyai keahlian tambahan dengan mengikuti kegiatan ekstrakurikuler yang ada antara lain : Ekskul Tahfidz Qur'an, Desain Grafis, Programming, Math Club, English Club, Sains Club, Tata Boga, Futsal, Sepak Bola, Persinas Asad, Bulu Tangkis, Pramuka.",
+                    },
+                    {
+                        title: 'ATLET',
+                        content: "peserta didik mengikuti pembelajaran secara intensif menggunakan kurikulum merdeka dan peserta didik mendapatkan pembinaan khusus sesuai dengan kelas yang telah dipilih (Forsgi Atau Persinas) dan dipersilahkan mengikuti ekskul yang telah disediakan."
+                    }
+                ]
+            }
+        }
+    ]
+
+    const getContent = contentByHostName.find(({host}) => host === hostName)
 
   return (
     <GuestLayout>
@@ -96,16 +163,19 @@ export default function Page({ articles, galleries, academic_calendar }: PagePro
         <div className="grid lg:grid-cols-2 lg:gap-10 sm:grid-cols-1 sm:gap-10">
             <div className="mb-10">
                 <p className="font-rubik text-lg mb-5 text-slate-500">Sambutan Kepala Sekolah</p>
-                <p className="font-montserrat text-3xl font-bold tracking-tighter mb-10">CETAK GENERASI BERAHLAKUL KARIMAH PROFESIONAL DAN RELIGIUS MENYONGSONG INDONESIA EMAS 2045</p>
+                      <p className="font-montserrat text-3xl font-bold tracking-tighter mb-10">{getContent!.content.principal.title}</p>
                 <p className="font-rubik text-md">
-                Membimbing peserta didik mengenali dan mengembangkan Potensi, Bakat, dan minatnya menjadi kompetensi yang berdaya saing, terampil menerapkan Ahlakul karimah, profesional dalam Penguasaan Ilmu Pengetahuan dan teknologi, menjadi hamba yang taat beragama. siap menjadi pemenang masa depan bukan penguasa masa lalu.
+                {getContent!.content.principal.text}
                 </p>
                 {/* <img className="w-4/12 h-4/12 mb-3 mt-3" src={ttdKepsek}/> */}
-                <p className="font-secular-one text-xl mt-3 mb-3 font-extrabold">Edi Purwanto, M.Pd.</p>
+                <p className="font-secular-one text-xl mt-3 mb-3 font-extrabold">{getContent!.content.principal.name}</p>
             </div>
             <div className="mb-10 flex flex-col lg:flex-row md:flex-row gap-2">
-                <img className="h-96" src={imgKepsek}/>
-                <img className="h-96" src={imgKepsek2}/>
+                {
+                    getContent!.content.principal.images.map((map) => (
+                        <img className="h-96" src={map.url}/>
+                    ))
+                }
             </div>
         </div>
     </section>
@@ -247,9 +317,9 @@ export default function Page({ articles, galleries, academic_calendar }: PagePro
             <AcademicCapIcon className="text-white text-center"/>
           </CardHeader>
           <CardContent>
-            <p className="text-center font-semibold text-lg mb-4 mt-4 text-sky-400">REGULER/UMUM</p>
+            <p className="text-center font-semibold text-lg mb-4 mt-4 text-sky-400">{getContent!.content.subject[0].title}</p>
             <p className="text-center text-md">
-            Peserta didik mengikuti Pembelajaran intensif di kelas menggunakan kurikulum merdeka, dan peserta didik dapat mempunyai keahlian tambahan dengan mengikuti kegiatan ekstrakurikuler yang ada antara lain : Ekskul Astronomi, Biologi, English Fun, Fisika, Kimia, Matematika, Jurnalistik, PIK - R, PMR, Tata Boga dan Tahfidz Qur'an.
+            {getContent!.content.subject[0].content}
             </p>
           </CardContent>
         </Card>
@@ -258,23 +328,26 @@ export default function Page({ articles, galleries, academic_calendar }: PagePro
             <SparklesIcon className="text-white text-center"/>
           </CardHeader>
           <CardContent>
-            <p className="text-center font-semibold text-lg mb-4 mt-4 text-orange-400">ATLET</p>
+            <p className="text-center font-semibold text-lg mb-4 mt-4 text-orange-400">{getContent!.content.subject[1].title}</p>
             <p className="text-center text-md">
-            Peserta didik mengikuti pembelajaran secara intensif menggunakan kurikulum merdeka dan peserta didik mendapatkan pembinaan khusus sesuai dengan kelas yang telah dipilih (Forsgi Atau Persinas) dan dipersilahkan mengikuti ekskul yang telah disediakan.
+            {getContent!.content.subject[1].content}
             </p>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="bg-green-400 h-48 rounded-t-lg">
-            <ComputerDesktopIcon className="text-white text-center"/>
-          </CardHeader>
-          <CardContent>
-            <p className="text-center font-semibold text-lg mb-4 mt-4 text-green-400">IT</p>
-            <p className="text-center text-md">
-            Peserta didik mengikuti pembelajaran secara intensif menggunakan kurikulum merdeka dan peserta didik mendapatkan materi tamban mengenai IT seperti Programming dan Desain Grafis.
-            </p>
-          </CardContent>
-        </Card>
+        {
+            getContent!.content.subject.length > 2 ?
+            <Card>
+              <CardHeader className="bg-green-400 h-48 rounded-t-lg">
+                <ComputerDesktopIcon className="text-white text-center"/>
+              </CardHeader>
+              <CardContent>
+                <p className="text-center font-semibold text-lg mb-4 mt-4 text-green-400">{getContent!.content.subject[2].title}</p>
+                <p className="text-center text-md">
+                {getContent!.content.subject[2].content}
+                </p>
+              </CardContent>
+            </Card> : <></>
+        }
         </div>
     </section>
     <section id="brand" className="relative isolate h-1/3 pb-0">
